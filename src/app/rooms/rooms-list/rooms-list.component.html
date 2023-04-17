@@ -1,0 +1,57 @@
+<h1>Rooms</h1>
+<body>
+<table class="table">
+        <tr class="table__header">
+            <th>select room</th>
+            <th>room number</th>
+            <th>room type</th>
+            <th>photo</th>
+            <th>price</th>
+            <th>amenities</th>
+            <th>rating</th>
+            <th>check in</th>
+            <th>check out</th>            
+            <th>lodge room</th>
+        </tr>
+
+        <tr *ngFor="let room of rooms" class="table__body" >
+            <td>
+                <div>
+                    <button class="btn btn-secondary" (click)="selectRoom(room)">Select</button>
+                </div>
+            </td>
+            <td>{{room.roomNumber}}</td>
+            <td>{{room.roomType | titlecase}} </td>
+            <td><img src = {{room.photos}} alt="Room photo" ></td>
+            <td>{{room.price | currency: 'EUR'}}</td> 
+            <td>{{room.amenities}}</td>
+            <td>{{room.rating | number: '1.1-2'}}</td>
+
+            <td>
+                <div *ngIf="!room.occupied">
+                    <input type="date" #box (keyup)="setCheckOutDate(box.value, room.roomNumber)" name="checkOut">
+                </div>
+                <div *ngIf="room.occupied">
+                    {{room.checkOutTime | date:'shortDate'}}
+                </div>
+            </td>            
+            <td>
+                <div *ngIf="!room.occupied">
+                    <input type="date" #box (keyup)="setCheckInDate(box.value, room.roomNumber)" name="checkIn">
+                </div>
+                <div *ngIf="room.occupied">
+                    {{room.checkInTime | date:'shortDate'}}
+                </div>
+            </td>
+            <td>
+                <div *ngIf="room.occupied">
+                    <button class="btn btn-secondary" (click)="unocuppy(room.roomNumber)">unocuppy</button>
+                </div>
+                <div *ngIf="!room.occupied">
+                    <button class="btn btn-secondary" (click)="ocuppy(room.roomNumber)">ocuppy</button>
+                </div>
+            </td>            
+
+        </tr>
+    </table> 
+</body>

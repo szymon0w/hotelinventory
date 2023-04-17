@@ -1,0 +1,24 @@
+<div class="top-info-bar">    
+    <div class="company-name">
+        <h1>Welcome to {{hotelName}}</h1>
+    </div>
+    <div class="multi-button">
+        <button  (click)="lodge()">Lodging</button>
+        <button  (click)="dislodge()">Dislodging</button>
+        <button  (click)="toggle()">Toggle</button>
+    </div>
+
+    <div [hidden] = "hideRooms" style="text-align: center;" [ngStyle]="{'color': rooms.availableRooms ? '#3bc79f': 'red'}">
+        We have {{rooms.availableRooms}} available, {{rooms.bookedRooms}} booked and in total we have {{rooms.bookedRooms + rooms.availableRooms}}.
+    </div>
+    <div class="company-logo">
+      <img src='/assets/images/logo.png' alt="Your Company Logo">
+    </div>
+  </div>
+<div>
+    <app-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+</div>
+<div>
+    <button class="btn btn-secondary"  (click)="addRoom()">Add Room</button>
+</div>
+

@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hotelinventory';
+
+  role = 'Admin';
+  BecomeClient(){
+    this.role = 'Client';
+  }
+  BecomeAdmin(){
+    this.role = 'Admin';
+  }
+  BecomeUnauthorized(){
+    this.role = 'Unauthorized';
+  }
 }
